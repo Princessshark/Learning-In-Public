@@ -1,2 +1,2 @@
 # Learning-In-Public
-Commands Dictonary, for better readibility view it on a web browser.
+Commands Dictonary, for better readability view it on a web browser.
