@@ -14,9 +14,11 @@
 		<br>
 		<hr>
 		<br>
-		<h4>Download the images only</h4>
-		<p>use the following command to <b>only download</b> EXAMPLE</p>
+		<h4>Downloading  only</h4>
+		<p>use the following commands to <b>download the images</b> EXAMPLE</p>
 		<h3>docker pull debian</h3>
+		<p>docker pull redhat/ubi8</p>
+		<p>docker pull ubuntu</p>
 		<br>
 		<hr>
 		<br>
@@ -50,11 +52,24 @@
 		<hr>
 		<br>
 		<h4>Check container properties</h4>
-		<p>use the following commang to <b>inspect assigned container</b></p>
+		<p>use the following command to <b>inspect assigned container</b></p>
 		<h5>INFO ==  debian or CONTAINER ID </h5>
 		<h3>docker inspect INFO</h3>
 		<br>
 		<hr>
-
+		<h4>Logs access</h4>
+		<p>use the following command to <b>list the containerization logs</b></P>
+		<h3>docker ps -a</h3>
+		<br>
+		<p>use the following command to <b>list the selected image log</b></p>
+		<h3>docker logs CONTAINER ID</h3>
+		<br>
+		<hr>
+		<br>
+		<h4>Clean up<h4>
+		<p>use the following command to clean you images</p>
+		<p>All</p>
+		<h3>docker container prune -f</h3>
+		<br>
 	</body>
 </html>
