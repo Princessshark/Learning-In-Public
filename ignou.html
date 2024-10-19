@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/IGNOU_logo.svg/1200px-IGNOU_logo.svg.png">
+    <title>Mono-Log</title>
+    <style>
+        /* Basic reset and styling for body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Dashboard styling */
+        .dashboard {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px; /* Adjusted for larger screens */
+            width: 100%;
+            margin: 0 auto;   /* Center the dashboard */
+        }
+
+        /* Student info styling */
+        .student-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .student-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .student-details {
+            flex-grow: 1;
+        }
+
+        .student-details h2 {
+            margin: 0;
+            font-size: 22px;  /* Increased font size */
+            color: #333;
+        }
+
+        .student-details p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 16px;  /* Increased font size */
+        }
+
+        /* URL buttons container */
+        .url-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* URL button styling */
+        .url-button {
+            margin: 10px 0;  /* Increased margin */
+            padding: 12px 15px;  /* Increased padding */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            font-size: 16px;  /* Increased font size */
+        }
+
+        .url-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hidden section styling */
+        .hidden-section {
+            display: none;
+            margin-top: 10px;
+            background-color: #e9ecef;
+            padding: 12px;  /* Increased padding */
+            border-radius: 5px;
+        }
+
+        /* URL resource button styling */
+        .resource-button {
+            display: block; /* Make each resource button block-level */
+            margin: 5px 0; /* Space between buttons */
+            padding: 10px;
+            background-color: #28a745; /* Different color for resources */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .resource-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        /* Responsive design adjustments */
+        @media (max-width: 480px) {
+            .student-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .student-info img {
+                margin: 0 0 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="student-info">
+            <img src="https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/286793606_1111359443056697_2308396701120333771_n.jpg?ccb=11-4&oh=01_Q5AaIHaDcC0fohBYql52ykgig_XZ9Xeb0_5sm6ccgBmQLfEJ&oe=671FECDE&_nc_sid=5e03e0&_nc_cat=101" alt="Student Image" id="studentImage">
+            <div class="student-details">
+                <h2 id="studentName">Bipul Sharma</h2>
+		<p id="enrollmentNumber"><b>Enrollment No: 2400823218</b></p>
+                <p id="courseTitle">Course: Bachelor's in Computer Application</p>
+		<a href="https://ignou.samarth.edu.in/index.php/dashboard">Official Account</a>
+            </div>
+        </div>
+        <div class="url-buttons" id="buttonContainer"></div>
+    </div>
+
+    <script>
+        // Array of semesters and their corresponding content
+        const semesterData = [
+            {
+                semester: 'Semester 1',
+                introductoryContent: 'Resources to #1',
+                resources: [
+                    { title: 'Study Materials', link: 'https://www.ignouassignmentguru.com/2016/08/ignou-bca-1st-semester-syllabus-subjects-course-structure-books-and-study-materials.html' },
+                    { title: 'Assignments', link: 'https://webservices.ignou.ac.in/assignments/Bachelor-Degree/BCA/bca.html' },
+                    { title: 'Exam Help', link: 'https://exam.ignou.ac.in/' },
+                    { title: 'News', link: 'https://www.ignouhelp.in/ignou-exam-form/' }
+               //     { title: 'Result', link: 'https://gradecard.ignou.ac.in/gradecard/' }
+                
+		]
+            },
+            {
+                semester: 'Semester 2',
+                introductoryContent: 'Resources to #2',
+                resources: [
+                    { title: 'Study Materials', link: 'https://www.ignouassignmentguru.com/2016/08/ignou-bca-2nd-semester-syllabus-subjects-course-structure-books-and-study-materials.html#google_vignette' },
+                    { title: 'Assignments', link: 'https://webservices.ignou.ac.in/assignments/Bachelor-Degree/BCA/bca.html' },
+                    { title: 'Exam Help', link: 'https://exam.ignou.ac.in/' },
+                    { title: 'News', link: 'https://www.ignouhelp.in/ignou-exam-form/' }
+              //      { title: 'Result', link: 'https://gradecard.ignou.ac.in/gradecard/view_gradecard.aspx?eno=2400823218&prog=BCA&type=1' }
+
+                ]
+            }
+        ];
+
+        // Function to create a button and corresponding content section
+        function createSemesterSection(semesterInfo) {
+            const button = document.createElement('button');
+            button.textContent = `Go to ${semesterInfo.semester}`;
+            button.className = 'url-button';
+
+            const hiddenSection = document.createElement('div');
+            hiddenSection.className = 'hidden-section';
+
+            const introContent = document.createElement('p');
+            introContent.textContent = semesterInfo.introductoryContent;
+            hiddenSection.appendChild(introContent);
+
+            semesterInfo.resources.forEach(resource => {
+                const resourceButton = document.createElement('a');
+                resourceButton.href = resource.link;  // Link to relevant section
+                resourceButton.className = 'resource-button'; // Added class for styling
+                resourceButton.textContent = resource.title;
+                hiddenSection.appendChild(resourceButton);
+            });
+
+            button.addEventListener('click', () => {
+                hiddenSection.style.display = hiddenSection.style.display === 'block' ? 'none' : 'block';
+            });
+
+            const wrapper = document.createElement('div');
+            wrapper.appendChild(button);
+            wrapper.appendChild(hiddenSection);
+
+            return wrapper;
+        }
+
+        // Get the button container
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        // Loop through the semesters to create sections
+        semesterData.forEach(semesterInfo => {
+            const semesterSection = createSemesterSection(semesterInfo);
+            buttonContainer.appendChild(semesterSection);
+        });
+    </script>
+</body>
+</html>
