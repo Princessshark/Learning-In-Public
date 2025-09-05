@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-purple': '#1D0847',
+                        'soft-silver': '#B5B7BB',
+                    },
+                    fontFamily: {
+                        'helvetica-black': ['Helvetica', 'Arial Black', 'sans-serif'],
+                        'helvetica-light': ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(29, 8, 71, 0.15);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #1D0847;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-helvetica-light">
+    <!-- Header Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-deep-purple to-purple-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative z-10 text-center fade-in">
+            <h1 id="main-name" class="text-6xl md:text-8xl font-helvetica-black font-black mb-4 tracking-wider"></h1>
+            <p id="sub-header" class="text-xl md:text-2xl font-helvetica-light font-light tracking-wide opacity-90"></p>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl opacity-70"></i>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section class="py-20 px-4 md:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-helvetica-black font-black text-center mb-16 text-deep-purple">PROJECTS</h2>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Projects will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-deep-purple text-white py-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <div id="social-links" class="flex justify-center space-x-8 mb-8">
+                <!-- Social icons will be dynamically inserted here -->
+            </div>
+            <p class="text-soft-silver font-helvetica-light">© 2024 <span id="footer-name"></span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Personal Data Array
+        const personalData = {
+            name: 'Bipul Sharma',
+            subHeader: 'Portfolio Highlights',
+            socialHandles: {
+                linkedIn: 'https://www.linkedin.com/in/bipul-sharma-7918aa157?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+                github: 'https://github.com/Princessshark',
+                youtube: 'https://www.youtube.com/@3Vorx',
+                instagram: 'https://www.instagram.com/bipuloo8?utm_source=qr&igsh=MWtkejY2bTZjaXRjMA==',
+                email: 'mailto:bipulsharma9385@example.com'
+            }
+        };
+
+        // Project Data Array
+        const projectsData = [
+            {
+                id: '01',
+                name: 'Software As a Service',
+                description: 'Institutify is a powerful yet simple CMS designed specifically for schools. Whether you are a small institution or a large campus, Institutify helps you create a beautiful online presence in minutes.',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxMCIgZmlsbD0iI0I1QjdCQiIvPgo8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjE0MCIgeT0iODAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTAiIHJ4PSI1IiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjE0MCIgeT0iMTEwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzFEMDg0NyIvPgo8L3N2Zz4K',
+                projectUrl: 'https://institutify.com'
+            },
+            {
+                id: '02',
+                name: 'Hr Solutions',
+                description: 'ILEE HR SOLUTIONS stands as a premier Training & Placement organization dedicated to bridging the gap between aspiring professionals and the dynamic Hospitality & Retail industries.',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjQjVCN0JCIi8+CjxyZWN0IHg9IjQwIiB5PSI0MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyMjAiIHJ4PSI4IiBmaWxsPSJ3aGl0ZSIvPgo8cmVjdCB4PSIxNTAiIHk9IjQwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIyMCIgcng9IjgiIGZpbGw9IndoaXRlIi8+CjxyZWN0IHg9IjI2MCIgeT0iNDAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMjIwIiByeD0iOCIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeD0iNTAiIHk9IjYwIiB3aWR0aD0iODAiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjUwIiB5PSI5MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzFEMDg0NyIvPgo8cmVjdCB4PSI1MCIgeT0iMTIwIiB3aWR0aD0iODAiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjMUQwODQ3Ii8+Cjwvc3ZnPgo=',
+                projectUrl: 'https://ileehrsolutions.github.io',
+            },
+            {
+                id: '03',
+                name: 'Social Commerce',
+                description: 'Trell was an indina alternative to ticktok based out of bangalore, within which i was responsible to coordinate with pre and post content productoion for an inhouse studio',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjNjM2NkY1Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTUwIDEyMEMxNTAgMTEwIDEzMCAxMDAgMTIwIDEwMEMxMTAgMTAwIDkwIDExMCA5MCAxMjBDOTAgMTMwIDExMCAxNDAgMTIwIDE0MEMxMzAgMTQwIDE1MCAxMzAgMTUwIDEyMFoiIGZpbGw9IiNCNUI3QkIiLz4KPHBhdGggZD0iTTI1MCA5MEMyNTAgODAgMjMwIDcwIDIyMCA3MEMyMTAgNzAgMTkwIDgwIDE5MCA5MEMxOTAgMTAwIDIxMCAxMTAgMjIwIDExMEMyMzAgMTEwIDI1MCAxMDAgMjUwIDkwWiIgZmlsbD0iI0I1QjdCQiIvPgo8cGF0aCBkPSJNMzIwIDEzMEMzMjAgMTIwIDMwMCAxMTAgMjkwIDExMEMyODAgMTEwIDI2MCAxMjAgMjYwIDEzMEMyNjAgMTQwIDI4MCAxNTAgMjkwIDE1MEMzMDAgMTUwIDMyMCAxNDAgMzIwIDEzMFoiIGZpbGw9IiNCNUI3QkIiLz4KPC9zdmc+Cg==',
+                projectUrl: 'https://drive.google.com/file/d/1RgXMOsURfCgy65rjv311GT-OZErZBmLt/view?pli=1',
+            },
+            {
+                id: '04',
+                name: 'Multi Media Analytics',
+                description: 'A comprehensive support for social media performance tracking with automated reporting, to Content development',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSI4IiBmaWxsPSIjQjVCN0JCIi8+CjxyZWN0IHg9IjgwIiB5PSIyMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzFEMDg0NyIvPgo8cmVjdCB4PSIxMjAiIHk9IjE4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMTYwIiB3aWR0aD0iMjAiIGhlaWdodD0iODAiIGZpbGw9IiMxRDA4NDciLz4KPHJlY3QgeD0iMjAwIiB5PSIxNDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMxRDA4NDciLz4KPHJlY3QgeD0iMjQwIiB5PSIxMjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiMxRDA4NDciLz4KPHJlY3QgeD0iMjgwIiB5PSIxMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiMxRDA4NDciLz4KPC9zdmc+Cg==',
+                projectUrl: 'https://drive.google.com/drive/folders/1eU6kCWh3ZHx-MBQI1MegAqbJIlewHyyD?usp=sharing'
+            },
+            {
+                id: '05',
+                name: 'Some Video Sample',
+                description: 'These video samples are put through either under my guidance or all by my self',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUQwODQ3Ii8+CjxyZWN0IHg9IjQwIiB5PSI0MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMjAiIHJ4PSIxMiIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeD0iNjAiIHk9IjYwIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjQjVCN0JCIi8+CjxyZWN0IHg9IjYwIiB5PSIxMjAiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTIwIiByeD0iOCIgZmlsbD0iI0I1QjdCQiIvPgo8cmVjdCB4PSIyMTAiIHk9IjEyMCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzFEMDg0NyIvPgo8cmVjdCB4PSIyMTAiIHk9IjE5MCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzFEMDg0NyIvPgo8L3N2Zz4K',
+                projectUrl: 'https://docs.google.com/document/d/1uDsp5py-R1ps37K1y-MwBVMYgZoaw0mDmqIRYd-zvJI/edit?usp=sharing',
+            },
+/*
+                id: '06',
+                name: 'Fitness Tracker',
+                description: 'A comprehensive fitness tracking application with workout logging, progress visualization, and personalized goal setting features.',
+                imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRkY2B0I0Ii8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iODAiIHN0cm9rZT0iI0I1QjdCQiIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjAiIHN0cm9rZT0iIzFEMDg0NyIgc3Ryb2tlLXdpZHRoPSI2IiBmaWxsPSJub25lIiBzdHJva2UtZGFzaGFycmF5PSIyMDAgMjAwIiBzdHJva2UtZGFzaG9mZnNldD0iNTAiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iMTUwIiByPSI0MCIgc3Ryb2tlPSIjQjVCN0JCIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjEwMCAxMDAiIHN0cm9rZS1kYXNob2Zmc2V0PSIyNSIvPgo8dGV4dCB4PSIyMDAiIHk9IjE1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFEMDg0NyIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjc1JTwvdGV4dD4KPC9zdmc+Cg==',
+                projectUrl: 'https://github.com/yourusername/fitness-tracker'
+            }
+*/
+            ];
+
+        // Social Media Icon Mapping
+        const socialIconMap = {
+            linkedIn: 'fab fa-linkedin',
+            github: 'fab fa-github',
+            youtube: 'fab fa-youtube',
+            instagram: 'fab fa-instagram',
+            email: 'fas fa-envelope',
+            twitter: 'fab fa-twitter',
+            facebook: 'fab fa-facebook',
+            dribbble: 'fab fa-dribbble',
+            behance: 'fab fa-behance'
+        };
+
+        // Initialize the portfolio
+        function initializePortfolio() {
+            renderPersonalInfo();
+            renderProjects();
+            renderSocialLinks();
+        }
+
+        // Render personal information
+        function renderPersonalInfo() {
+            document.getElementById('main-name').textContent = personalData.name.toUpperCase();
+            document.getElementById('sub-header').textContent = personalData.subHeader;
+            document.getElementById('footer-name').textContent = personalData.name;
+        }
+
+        // Render projects dynamically
+        function renderProjects() {
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = '';
+
+            projectsData.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card bg-white rounded-xl shadow-lg overflow-hidden fade-in';
+                projectCard.style.animationDelay = `${index * 0.1}s`;
+                
+                projectCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${project.imageUrl}" alt="${project.name}" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-deep-purple text-white px-3 py-1 rounded-full text-sm font-bold">
+                            ${project.id}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-helvetica-black font-bold text-deep-purple mb-3">${project.name}</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">${project.description}</p>
+                        <a href="${project.projectUrl}" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center bg-deep-purple text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-800 transition-all duration-300 transform hover:scale-105">
+                            View Project
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Render social links dynamically
+        function renderSocialLinks() {
+            const socialLinksContainer = document.getElementById('social-links');
+            socialLinksContainer.innerHTML = '';
+
+            Object.entries(personalData.socialHandles).forEach(([platform, url]) => {
+                const iconClass = socialIconMap[platform] || 'fas fa-link';
+                
+                const socialLink = document.createElement('a');
+                socialLink.href = url;
+                socialLink.target = '_blank';
+                socialLink.rel = 'noopener noreferrer';
+                socialLink.className = 'social-icon text-soft-silver hover:text-white text-2xl';
+                socialLink.innerHTML = `<i class="${iconClass}"></i>`;
+                
+                socialLinksContainer.appendChild(socialLink);
+            });
+        }
+
+        // Smooth scrolling for navigation
+        function smoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePortfolio();
+            smoothScroll();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a8aacfa60f9a95',t:'MTc1NzEwNjE0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
